@@ -1,0 +1,11 @@
+Package: GRlaw
+Type: Package
+Title: Gutenberg-Richter Law Analysis
+Version: 1.0
+Date: 2019-12-03
+Author: Allan A. Zea
+Maintainer: Allan A. Zea <zealobo@campus.tu-berlin.de>
+Description: One paragraph description of what the package does as one or more full sentences.
+License: MIT License
+Imports: Rcpp (>= 1.0.2)
+LinkingTo: Rcpp
