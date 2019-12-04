@@ -30,14 +30,14 @@ double find_b_value(Rcpp::NumericVector& N, std::string method = "ls") {
 
 // [[Rcpp::export]]
 // Function maximum_likelihood_estimation
-double maximum_likelihood_estimation(Rcpp::NumericVector& M) {
-  double M_avg = 0, M_length = (double) M.size();
-  double M_min = *std::min_element(M.begin(), M.end());
-  for (auto x : M) {
-    M_avg += x;
+double maximum_likelihood_estimation(Rcpp::NumericVector& data) {
+  double data_length = (double) data.size(), data_avg = 0;
+  double data_min = *std::min_element(data.begin(), data.end());
+  for (auto x : data) {
+    data_avg += x;
   }
-  M_avg /= M_length;
-  double mle = log10(exp(1)) / (M_avg - M_min);
+  data_avg /= data_length;
+  double mle = log10(exp(1)) / (data_avg - data_min);
   return mle;
 }
 
