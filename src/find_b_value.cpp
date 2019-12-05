@@ -2,7 +2,6 @@
 #include <math.h>
 #include <string>
 #include <algorithm>
-using namespace Rcpp;
 
 // N(M): cumulative curve, giving the number of
 //       earthquakes of magnitude greater than
@@ -13,19 +12,49 @@ using namespace Rcpp;
 
 // [[Rcpp::export]]
 // Function find_b_value
-double find_b_value(Rcpp::NumericVector& N, std::string method = "ls") {
+double find_b_value(Rcpp::NumericVector& N, Rcpp::NumericVector& M, std::string method = "ls") {
   if (method == "ls") {
     // fit linear regression
+    Rcpp::Function least_squares("least_squares");
+    Rcpp::List line = Rcpp::as<Rcpp::List>( least_squares(N, M) );
+    return line["b_value"];
   } else if (method == "mle") {
     // compute maximum likelihood estimation
     Rcpp::Function maximum_likelihood_estimation("maximum_likelihood_estimation");
-    double b_value = as<double>( maximum_likelihood_estimation(N) );
+    double b_value = Rcpp::as<double>( maximum_likelihood_estimation(M) );
     return b_value;
   } else {
     // throw error
     throw std::invalid_argument("Please specify a valid method.");
   }
   return 0;
+}
+
+// [[Rcpp::export]]
+// Function least_squares
+Rcpp::List least_squares(Rcpp::NumericVector& X, Rcpp::NumericVector& Y) {
+  Rcpp::List line; 
+  
+  // Compute average of X[] and Y[] 
+  double X_avg = 0, Y_avg = 0;
+  for (int k = 0; k < X.size(); k++) {
+    X_avg += X[k];
+    Y_avg += Y[k];
+  }
+  X_avg /= (double) X.size();
+  Y_avg /= (double) Y.size();
+  
+  // Compute Beta
+  double top = 0, bottom = 0;
+  for (int k = 0; k < X.size(); k++) {
+    top += ((X[k] - X_avg) * (Y[k] - Y_avg));
+    bottom += + ((X[k] - X_avg) * (Y[k]- Y_avg));
+  }
+  double a = top / bottom;
+  double b = Y_avg - a * X_avg;
+  
+  line = Rcpp::List::create( Rcpp::Named("a") = a, Rcpp::Named("b_value") = b );
+  return line;
 }
 
 // [[Rcpp::export]]
@@ -42,7 +71,7 @@ double maximum_likelihood_estimation(Rcpp::NumericVector& data) {
 }
 
 /*** R
-maximum_likelihood_estimation(c(-1, 0, 2))
-find_b_value(c(-1, 0, 2), method = "mle")
-find_b_value(c(-1, 0, 2), method = "fifa_world_cup")
+maximum_likelihood_estimation(c(4, 5, 6))
+find_b_value(c(-1, 0, 2), c(4, 5, 6), method = "mle")
+find_b_value(c(-1, 0, 2), c(4, 5, 6), method = "fifa_world_cup")
 */
