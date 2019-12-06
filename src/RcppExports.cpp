@@ -5,6 +5,42 @@
 
 using namespace Rcpp;
 
+// least_squares
+// Function least_squares Rcpp::List least_squares(Rcpp::NumericVector& N, Rcpp::NumericVector& M);
+RcppExport SEXP _GRlaw_least_squares(SEXP NSEXP, SEXP MSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector& >::type N(NSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector& >::type M(MSEXP);
+    rcpp_result_gen = Rcpp::wrap(least_squares(N, M));
+    return rcpp_result_gen;
+END_RCPP
+}
+// maximum_likelihood_estimation
+// Function maximum_likelihood_estimation double maximum_likelihood_estimation(Rcpp::NumericVector& data);
+RcppExport SEXP _GRlaw_maximum_likelihood_estimation(SEXP dataSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector& >::type data(dataSEXP);
+    rcpp_result_gen = Rcpp::wrap(maximum_likelihood_estimation(data));
+    return rcpp_result_gen;
+END_RCPP
+}
+// find_b_value
+// Function find_b_value double find_b_value(Rcpp::NumericVector& N, Rcpp::NumericVector& M, std::string method);
+RcppExport SEXP _GRlaw_find_b_value(SEXP NSEXP, SEXP MSEXP, SEXP methodSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector& >::type N(NSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector& >::type M(MSEXP);
+    Rcpp::traits::input_parameter< std::string >::type method(methodSEXP);
+    rcpp_result_gen = Rcpp::wrap(find_b_value(N, M, method));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rcpp_hello_world
 List rcpp_hello_world();
 RcppExport SEXP _GRlaw_rcpp_hello_world() {
@@ -17,6 +53,9 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_GRlaw_least_squares", (DL_FUNC) &_GRlaw_least_squares, 2},
+    {"_GRlaw_maximum_likelihood_estimation", (DL_FUNC) &_GRlaw_maximum_likelihood_estimation, 1},
+    {"_GRlaw_find_b_value", (DL_FUNC) &_GRlaw_find_b_value, 3},
     {"_GRlaw_rcpp_hello_world", (DL_FUNC) &_GRlaw_rcpp_hello_world, 0},
     {NULL, NULL, 0}
 };
