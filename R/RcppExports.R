@@ -13,7 +13,3 @@ find_b_value <- function(N, M, method = "ls") {
     .Call(`_GRlaw_find_b_value`, N, M, method)
 }
 
-rcpp_hello_world <- function() {
-    .Call(`_GRlaw_rcpp_hello_world`)
-}
-

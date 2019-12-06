@@ -41,22 +41,11 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// rcpp_hello_world
-List rcpp_hello_world();
-RcppExport SEXP _GRlaw_rcpp_hello_world() {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(rcpp_hello_world());
-    return rcpp_result_gen;
-END_RCPP
-}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_GRlaw_least_squares", (DL_FUNC) &_GRlaw_least_squares, 2},
     {"_GRlaw_maximum_likelihood_estimation", (DL_FUNC) &_GRlaw_maximum_likelihood_estimation, 1},
     {"_GRlaw_find_b_value", (DL_FUNC) &_GRlaw_find_b_value, 3},
-    {"_GRlaw_rcpp_hello_world", (DL_FUNC) &_GRlaw_rcpp_hello_world, 0},
     {NULL, NULL, 0}
 };
 
