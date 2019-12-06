@@ -1,7 +1,7 @@
 # GRlaw: Gutenberg-Richter Analysis of Seismic Data
 Gutenberg-Richter Analysis of Seismic Data with R
 
-https://www.globalcmt.org/
+Global Centroid-Moment-Tensor (CMT) Project https://www.globalcmt.org/
 
 
 ### Maintainer: 
