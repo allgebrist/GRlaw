@@ -12,6 +12,8 @@ plot_earthquake_distribution <- function(earthquake_count, earthquake_magnitude,
          add_trace(x = ~earthquake_magnitude, 
                    name = 'Earthquake') %>%
          layout(title = "Earthquake Distribution",
-                yaxis = list(type = "log"))
+                xaxis = list(title = "Magnitude: M"), 
+                yaxis = list(title = "Count: N(M)",
+                             type = "log"))
   plt
 }
