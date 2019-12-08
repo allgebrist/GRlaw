@@ -5,6 +5,17 @@
 
 using namespace Rcpp;
 
+// cumulative_frequency
+// Function cumulative_frequency Rcpp::List cumulative_frequency(Rcpp::NumericVector& magnitudes);
+RcppExport SEXP _GRlaw_cumulative_frequency(SEXP magnitudesSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector& >::type magnitudes(magnitudesSEXP);
+    rcpp_result_gen = Rcpp::wrap(cumulative_frequency(magnitudes));
+    return rcpp_result_gen;
+END_RCPP
+}
 // least_squares
 // Function least_squares Rcpp::List least_squares(Rcpp::NumericVector& N, Rcpp::NumericVector& M);
 RcppExport SEXP _GRlaw_least_squares(SEXP NSEXP, SEXP MSEXP) {
@@ -43,6 +54,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_GRlaw_cumulative_frequency", (DL_FUNC) &_GRlaw_cumulative_frequency, 1},
     {"_GRlaw_least_squares", (DL_FUNC) &_GRlaw_least_squares, 2},
     {"_GRlaw_maximum_likelihood_estimation", (DL_FUNC) &_GRlaw_maximum_likelihood_estimation, 1},
     {"_GRlaw_find_b_value", (DL_FUNC) &_GRlaw_find_b_value, 3},
