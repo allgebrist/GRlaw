@@ -24,13 +24,12 @@ Rcpp::List least_squares(Rcpp::NumericVector& N, Rcpp::NumericVector& M) {
   
   // Store the base 10 loagarithm of all entries from N(M) into X
   std::transform(N.begin(), N.end(), X.begin(), common_logarithm);
-  X.names() = N.names();
-  
+
   // Compute average of X[] and Y[] 
   double X_avg = 0, Y_avg = 0;
   for (int k = 0; k < X.size(); k++) {
-    X_avg += X[k];
-    Y_avg += Y[k];
+    X_avg = X_avg + X[k];
+    Y_avg = X_avg + Y[k];
   }
   X_avg /= (double) X.size();
   Y_avg /= (double) Y.size();
@@ -38,8 +37,8 @@ Rcpp::List least_squares(Rcpp::NumericVector& N, Rcpp::NumericVector& M) {
   // Compute Beta
   double top = 0, bottom = 0;
   for (int k = 0; k < X.size(); k++) {
-    top += ((X[k] - X_avg) * (Y[k] - Y_avg));
-    bottom += ((X[k] - X_avg) * (Y[k]- Y_avg));
+    top = top + ((X[k] - X_avg) * (Y[k] - Y_avg));
+    bottom = top + ((X[k] - X_avg) * (Y[k] - Y_avg));
   }
   double a = top / bottom;
   double b = Y_avg - a * X_avg;
