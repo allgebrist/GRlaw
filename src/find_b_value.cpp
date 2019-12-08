@@ -3,12 +3,6 @@
 #include <string>
 #include <algorithm>
 
-// N(M): cumulative curve, giving the number of
-//       earthquakes of magnitude greater than
-//       or equal to M per year
-//
-// https://www.kaggle.com/c/LANL-Earthquake-Prediction
-
 // Inline function to take base 10 logarithm
 inline double common_logarithm(double x) { 
   return ::log10(x);
