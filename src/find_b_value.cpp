@@ -19,29 +19,28 @@ inline double common_logarithm(double x) {
 Rcpp::List least_squares(Rcpp::NumericVector& N, Rcpp::NumericVector& M) {
   Rcpp::List line; 
   
-  Rcpp::NumericVector X(N.size());
-  Rcpp::NumericVector Y = M;
+  Rcpp::NumericVector X = M;
+  Rcpp::NumericVector Y(N.size());
   
   // Store the base 10 loagarithm of all entries from N(M) into X
-  std::transform(N.begin(), N.end(), X.begin(), common_logarithm);
+  std::transform(N.begin(), N.end(), Y.begin(), common_logarithm);
 
   // Compute average of X[] and Y[] 
   double X_avg = 0, Y_avg = 0;
   for (int k = 0; k < X.size(); k++) {
-    X_avg = X_avg + X[k];
-    Y_avg = X_avg + Y[k];
+    X_avg += X[k];
+    Y_avg += Y[k];
   }
   X_avg /= (double) X.size();
   Y_avg /= (double) Y.size();
   
-  // Compute Beta
   double top = 0, bottom = 0;
   for (int k = 0; k < X.size(); k++) {
-    top = top + ((X[k] - X_avg) * (Y[k] - Y_avg));
-    bottom = top + ((X[k] - X_avg) * (Y[k] - Y_avg));
+    top += ((X[k] - X_avg) * (Y[k] - Y_avg));
+    bottom += ((X[k] - X_avg) * (X[k] - X_avg));
   }
-  double a = top / bottom;
-  double b = Y_avg - a * X_avg;
+  double b = top / bottom;
+  double a = Y_avg - b * X_avg;
   
   line = Rcpp::List::create( Rcpp::Named("a") = a, Rcpp::Named("b_value") = b );
   return line;

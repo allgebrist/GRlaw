@@ -20,7 +20,7 @@ plot_earthquake_distribution <- function(earthquake_count, earthquake_magnitude,
     ls <- least_squares(N = earthquake_distribution$earthquake_count,
                         M = earthquake_distribution$earthquake_magnitude)
     
-    fitted_y_values <- 10^(ls$a - ls$b_value * earthquake_magnitude)
+    fitted_y_values <- 10^(ls$a + ls$b_value * earthquake_magnitude)
     
     plt <- plt %>% add_lines(y = fitted_y_values,
                              mode = "lines")
