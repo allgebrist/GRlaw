@@ -1,6 +1,18 @@
 #include <Rcpp.h>
 #include <algorithm>
 
+//' Compute the cumulative frequency of seismic events with given magnitudes
+//'
+//' @param magnitudes A numeric vector containing the magnitudes from a seismic event catalog.
+//' @return A list containing the (sorted) vector \eqn{M} of magnitudes and the vector \eqn{N(M)} containing
+//' the number of earthquakes of magnitude greater than or equal to \eqn{M}.
+//' 
+//' @export
+//' @examples
+//' cumulative_frequency(c(1, 1, 5))
+//' cumulative_frequency(c(6, 5, 4, 3, 2, 1, 1))
+//'
+//' 
 // [[Rcpp::export]]
 // Function cumulative_frequency
 Rcpp::List cumulative_frequency(Rcpp::NumericVector& magnitudes) {
@@ -25,8 +37,3 @@ Rcpp::List cumulative_frequency(Rcpp::NumericVector& magnitudes) {
 }
 
 
-
-/*** R
-cumulative_frequency(c(1, 1, 5))
-cumulative_frequency(c(6, 5, 4, 3, 2, 1, 1))
-*/
