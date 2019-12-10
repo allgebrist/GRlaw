@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1576012139402.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2626733688",
+    "id" : "849E8205",
+    "lastKnownWriteTime" : 1576012344,
+    "last_content_update" : 1576012344524,
+    "path" : "~/GRlaw/src/cumulative_frequency.cpp",
+    "project_path" : "src/cumulative_frequency.cpp",
+    "properties" : {
+        "cursorPosition" : "8,4",
+        "scrollLine" : "1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "cpp"
+}
