@@ -29,13 +29,13 @@ BEGIN_RCPP
 END_RCPP
 }
 // maximum_likelihood_estimation
-// Function maximum_likelihood_estimation double maximum_likelihood_estimation(Rcpp::NumericVector& data);
-RcppExport SEXP _GRlaw_maximum_likelihood_estimation(SEXP dataSEXP) {
+// Function maximum_likelihood_estimation double maximum_likelihood_estimation(Rcpp::NumericVector& magnitudes);
+RcppExport SEXP _GRlaw_maximum_likelihood_estimation(SEXP magnitudesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::NumericVector& >::type data(dataSEXP);
-    rcpp_result_gen = Rcpp::wrap(maximum_likelihood_estimation(data));
+    Rcpp::traits::input_parameter< Rcpp::NumericVector& >::type magnitudes(magnitudesSEXP);
+    rcpp_result_gen = Rcpp::wrap(maximum_likelihood_estimation(magnitudes));
     return rcpp_result_gen;
 END_RCPP
 }

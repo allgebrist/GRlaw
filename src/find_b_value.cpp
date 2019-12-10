@@ -36,7 +36,7 @@ Rcpp::List least_squares(Rcpp::NumericVector& N, Rcpp::NumericVector& M) {
   Rcpp::NumericVector X = M;
   Rcpp::NumericVector Y(N.size());
   
-  // Store the base 10 loagarithm of all entries from N(M) into X
+  // Store the base 10 logarithm of all entries from N(M) into X
   std::transform(N.begin(), N.end(), Y.begin(), common_logarithm);
 
   // Compute average of X[] and Y[] 
