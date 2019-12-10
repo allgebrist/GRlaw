@@ -1,0 +1,59 @@
+[
+    {
+        "definitions" : [
+            {
+                "column" : 12,
+                "file" : "/home/allgebrist/GRlaw/src/cumulative_frequency.cpp",
+                "kind" : 6,
+                "line" : 18,
+                "name" : "cumulative_frequency(Rcpp::NumericVector &)",
+                "parent_name" : "",
+                "usr" : "c:@F@cumulative_frequency#&$@N@Rcpp@C@Vector>#VI14#@N@Rcpp@CT>1#T@PreserveStorage#"
+            }
+        ],
+        "file" : "/home/allgebrist/GRlaw/src/cumulative_frequency.cpp",
+        "file_last_write" : 1576012344
+    },
+    {
+        "definitions" : [
+            {
+                "column" : 15,
+                "file" : "/home/allgebrist/GRlaw/src/find_b_value.cpp",
+                "kind" : 6,
+                "line" : 7,
+                "name" : "common_logarithm(double)",
+                "parent_name" : "",
+                "usr" : "c:@F@common_logarithm#d#"
+            },
+            {
+                "column" : 12,
+                "file" : "/home/allgebrist/GRlaw/src/find_b_value.cpp",
+                "kind" : 6,
+                "line" : 28,
+                "name" : "least_squares(Rcpp::NumericVector &, Rcpp::NumericVector &)",
+                "parent_name" : "",
+                "usr" : "c:@F@least_squares#&$@N@Rcpp@C@Vector>#VI14#@N@Rcpp@CT>1#T@PreserveStorage#S0_#"
+            },
+            {
+                "column" : 8,
+                "file" : "/home/allgebrist/GRlaw/src/find_b_value.cpp",
+                "kind" : 6,
+                "line" : 74,
+                "name" : "maximum_likelihood_estimation(Rcpp::NumericVector &)",
+                "parent_name" : "",
+                "usr" : "c:@F@maximum_likelihood_estimation#&$@N@Rcpp@C@Vector>#VI14#@N@Rcpp@CT>1#T@PreserveStorage#"
+            },
+            {
+                "column" : 8,
+                "file" : "/home/allgebrist/GRlaw/src/find_b_value.cpp",
+                "kind" : 6,
+                "line" : 104,
+                "name" : "find_b_value(Rcpp::NumericVector &, Rcpp::NumericVector &, std::string)",
+                "parent_name" : "",
+                "usr" : "c:@F@find_b_value#&$@N@Rcpp@C@Vector>#VI14#@N@Rcpp@CT>1#T@PreserveStorage#S0_#$@N@std@N@__1@C@basic_string>#C#$@N@std@N@__1@S@char_traits>#C#$@N@std@N@__1@C@allocator>#C#"
+            }
+        ],
+        "file" : "/home/allgebrist/GRlaw/src/find_b_value.cpp",
+        "file_last_write" : 1576013020
+    }
+]
