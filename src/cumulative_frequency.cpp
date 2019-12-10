@@ -3,7 +3,7 @@
 
 //' Compute the cumulative frequency of seismic events with given magnitudes
 //'
-//' @param magnitudes A numeric vector containing the magnitudes from a seismic event catalog.
+//' @param magnitudes A numeric vector containing the earthquake magnitudes from a given catalog.
 //' @return A list containing the (sorted) vector \eqn{M} of magnitudes and the vector \eqn{N(M)} 
 //' corresponding to the number of earthquakes of magnitude greater than or equal to \eqn{M}.
 //' 

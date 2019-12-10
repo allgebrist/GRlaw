@@ -8,6 +8,26 @@ inline double common_logarithm(double x) {
   return ::log10(x);
 }
 
+
+//' Fit the frequency-magnitude plot using linear least squares
+//'
+//'
+//' @param N A numeric vector containing the number of earthquakes of magnitude M or greater.
+//' @param M A numeric vector containing the earthquake magnitudes from a given catalog.
+//' @return A list containing the productivity parameter \eqn{a} and the \eqn{b}-value. 
+//' @export
+//' @examples
+//' // Load earthquakes data from the Istituto Nazionale di Geofisica e Vulcanologia (12. 10. 2019, last 7 days)
+//' catalog <- read.csv(file="./data/terremoti_ultimi_7_giorni.csv", header = TRUE, sep = ",")
+//' magnitudes <- catalog$Magnitude
+//' // Replace missing values
+//' magnitudes[21] <- 6.0
+//' magnitudes[22] <- 2.1
+//' magnitudes[40] <- 3.4
+//' freq <- cumulative_frequency(magnitudes)
+//' least_squares(freq$count, freq$magnitude)
+//'
+//' 
 // [[Rcpp::export]]
 // Function least_squares
 Rcpp::List least_squares(Rcpp::NumericVector& N, Rcpp::NumericVector& M) {
@@ -40,19 +60,60 @@ Rcpp::List least_squares(Rcpp::NumericVector& N, Rcpp::NumericVector& M) {
   return line;
 }
 
+
+//' Estimate the b-value with the maximum likelihood method 
+//'
+//'
+//' @param magnitudes A numeric vector containing the earthquake magnitudes from a given catalog.
+//' @return The \eqn{b}-value obtained estimated with the maximum likelihood method.
+//' @export
+//' @examples
+//' // Load earthquakes data from the Istituto Nazionale di Geofisica e Vulcanologia (12. 10. 2019, last 7 days)
+//' catalog <- read.csv(file="./data/terremoti_ultimi_7_giorni.csv", header = TRUE, sep = ",")
+//' magnitudes <- catalog$Magnitude
+//' // Replace missing values
+//' magnitudes[21] <- 6.0
+//' magnitudes[22] <- 2.1
+//' magnitudes[40] <- 3.4
+//' freq <- cumulative_frequency(magnitudes)
+//' maximum_likelihood_estimation(freq$magnitude)
+//'
+//' 
 // [[Rcpp::export]]
 // Function maximum_likelihood_estimation
-double maximum_likelihood_estimation(Rcpp::NumericVector& data) {
-  double data_length = (double) data.size(), data_avg = 0;
-  double data_min = *std::min_element(data.begin(), data.end());
-  for (auto x : data) {
-    data_avg += x;
+double maximum_likelihood_estimation(Rcpp::NumericVector& magnitudes) {
+  double magnitudes_length = (double) magnitudes.size(), magnitudes_avg = 0;
+  double magnitudes_min = *std::min_element(magnitudes.begin(), magnitudes.end());
+  for (auto x : magnitudes) {
+    magnitudes_avg += x;
   }
-  data_avg /= data_length;
-  double mle = log10(exp(1)) / (data_avg - data_min);
+  magnitudes_avg /= magnitudes_length;
+  double mle = log10(exp(1)) / (magnitudes_avg - magnitudes_min);
   return mle;
 }
 
+
+//' Estimate the b-value of an earthquake catalog
+//'
+//'
+//' @param N A numeric vector containing the number of earthquakes of magnitude M or greater.
+//' @param M A numeric vector containing the earthquake magnitudes from a given catalog.
+//' @param method A string indicating the method to be used for the calculation of the \eqn{b}-value.
+//' It can either be \code{"ls"} for linear least squares or \code{"mle"} for the maximum likelihood method.
+//' @return The \eqn{b}-value obtained by applying the indicated method
+//' @export
+//' @examples
+//' //' // Load earthquakes data from the Istituto Nazionale di Geofisica e Vulcanologia (12. 10. 2019, last 7 days)
+//' catalog <- read.csv(file="./data/terremoti_ultimi_7_giorni.csv", header = TRUE, sep = ",")
+//' magnitudes <- catalog$Magnitude
+//' // Replace missing values
+//' magnitudes[21] <- 6.0
+//' magnitudes[22] <- 2.1
+//' magnitudes[40] <- 3.4
+//' freq <- cumulative_frequency(magnitudes)
+//' find_b_value(freq$count, freq$magnitude, "ls")
+//'
+//' 
 // [[Rcpp::export]]
 // Function find_b_value
 double find_b_value(Rcpp::NumericVector& N, Rcpp::NumericVector& M, std::string method = "ls") {
@@ -60,7 +121,8 @@ double find_b_value(Rcpp::NumericVector& N, Rcpp::NumericVector& M, std::string 
     // Fit the line log(N(M)) vs M
     Rcpp::Function least_squares("least_squares");
     Rcpp::List line = Rcpp::as<Rcpp::List>( least_squares(N, M) );
-    return line["b_value"];
+    double b_value = line["b_value"];
+    return -b_value;
   } else if (method == "mle") {
     // Compute maximum likelihood estimation
     Rcpp::Function maximum_likelihood_estimation("maximum_likelihood_estimation");
@@ -73,9 +135,3 @@ double find_b_value(Rcpp::NumericVector& N, Rcpp::NumericVector& M, std::string 
   return 0;
 }
 
-/*** R
-maximum_likelihood_estimation(c(4, 5, 6))
-find_b_value(c(-1, 0, 2), c(4, 5, 6), method = "mle")
-find_b_value(c(1, 10, 100), c(0, 1, 2), method = "ls")
-find_b_value(c(-1, 0, 2), c(4, 5, 6), method = "fifa_world_cup")
-*/
