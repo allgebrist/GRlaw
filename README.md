@@ -1,5 +1,5 @@
 # GRlaw: Gutenberg-Richter Analysis of Seismic Data
-Gutenberg-Richter Analysis of Seismic Data with R
+This repository contains some basic functions to analyze seismic data using Gutenberg-Richter's empirical law. 
 
 
 ![alt text](https://github.com/allgebrist/GRlaw/blob/master/data/Screenshot.png)
