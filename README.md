@@ -11,4 +11,5 @@ The Gutenberg-Richter law is an empirical model that expresses the connection be
 ### Maintainer
 #### Allan A. Zea (TU Berlin, Email: zealobo [at] campus.tu-berlin.de)
 
-### License: MIT
+### License: 
+#### MIT License
