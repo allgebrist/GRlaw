@@ -8,7 +8,7 @@ The Gutenberg-Richter law is an empirical model that expresses the connection be
 [1] Gutenberg, B. and Richter, C. F. (1944). Frequency of earthquakes in California, Bull. Seism. Soc. Am.
 34, 185-188. 
 
-### Maintainer: 
+### Maintainer
 #### Allan A. Zea (TU Berlin, Email: zealobo [at] campus.tu-berlin.de)
 
 ### License: MIT
